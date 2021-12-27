@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kilogod.code.mapper.PayInfoMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.kilogod.code.domain.PayInfo">
+                    <id column="id" property="id"/>
+                    <result column="user_id" property="userId"/>
+                    <result column="total_amount" property="totalAmount"/>
+                    <result column="receipt_amount" property="receiptAmount"/>
+                    <result column="buyer_pay_amount" property="buyerPayAmount"/>
+                    <result column="trade_no" property="tradeNo"/>
+                    <result column="out_trade_no" property="outTradeNo"/>
+                    <result column="subject" property="subject"/>
+                    <result column="body" property="body"/>
+                    <result column="trade_status" property="tradeStatus"/>
+                    <result column="buyer_id" property="buyerId"/>
+                    <result column="seller_id" property="sellerId"/>
+                    <result column="fund_bill_list" property="fundBillList"/>
+                    <result column="send_pay_date" property="sendPayDate"/>
+                    <result column="create_time" property="createTime"/>
+                    <result column="ext1" property="ext1"/>
+                    <result column="ext2" property="ext2"/>
+                    <result column="ext3" property="ext3"/>
+                    <result column="ext4" property="ext4"/>
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, user_id, total_amount, receipt_amount, buyer_pay_amount, trade_no, out_trade_no, subject, body, trade_status, buyer_id, seller_id, fund_bill_list, send_pay_date, create_time, ext1, ext2, ext3, ext4
+        </sql>
+
+</mapper>

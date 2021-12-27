@@ -1,0 +1,95 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/finalshop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    initialSize: 1
+    minIdle: 3
+    maxActive: 20
+    maxIdle: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    # 数据库连接心跳:关闭的话数据库socket会断掉
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙`
+    filters: stat,wall,slf4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 合并多个DruidDataSource的监控数据
+    #useGlobalDataSourceStat: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    password:
+    # 连接超时时间（毫秒）
+    timeout: 10000
+    pool:
+      # 连接池中的最大空闲连接
+      max-idle: 8
+      # 连接池中的最小空闲连接
+      min-idle: 0
+      # 连接池最大连接数（使用负值表示没有限制）
+      max-active: 8
+      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+      #sentinel:
+      #master: redis-master
+      #node: 192.168.11.122:6379
+
+mybatis-plus:
+  type-aliases-package: com.kilogods.code.domain
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #这个配置会将执行的sql打印出来
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+aliyun:
+  sms:
+    accessKeyId: LTAI4GL7rqbM6XqhuhU8YgCA
+    accessSecret: OvlNbRjLmnMcGcKbofZQiNJrMBxNhT
+
+alipay:
+  app_id: 2021000116669376
+  merchant_private_key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCc1J5o2yMsAtxKM+sATHsUbPZKk6hvB7qObQtESpR5069DUQsQPa7DsZLTCYg/Ueh2pvRAMAbwdeLa6fdtLR2+TEi+Cne0rmqW3EtxSPZ8ioEZiYRTEYLO0pSGi/5UVFtamLTQrV1Ew0hUR3ZRgehOwsGml/8Wo1yk70kXVrI+hP5DSDp7NFo1sF3X2v1EJO8pPoP3fsn6DlFz/Jw91baDJPkqrbBmXHlnggW98PAxFZ3YNKkqttD0nM72YbpTAzW6TtKXlZnSDX8X6PtycS7yO+AbxqkJ63KeU9Kt3PtEw9I2mfZiTY9NEIcAaW357NZKheXW9EEf754fS8qtQM6fAgMBAAECggEAGVvT5XaRoFsyDZmJhTnYqPvZc0Oe950TUFZXfQpmKbDN5R+kn1KqAKCk8hTXgA2Zfh4O3pYleRpGvUkZpgCmj4+8L2Z35rJRL+WdGUtH9+lZaKywxdHOCe1I8NyQGkitoN+SVS/DJgxBlMcdXZ6Y1qttLqfjKmDt6Ql8ExcEqVENEzj2jH0SMJUNaoKGO5DQPaC1t0HW6bePxXaeozGCHVrzXQ+8XOC8enNXT82984NBYcy1KEoyCebFBiNldzZFrKaSdMFp/E2UwENkdD5hwsZ5VJ4pGOPBt2Wciu2ZADOf7StX3ytnUbxkgk4o+/w5T7g0KCYDqxi4UC1U/M+/EQKBgQDJhf2L/jKO5bVzPjR0Gsn1//KdXg3Q7MYGvIu17mWoD/U9rkCM2CAtm6SrF2yz/SUzA32kQDdNHml74F90dSUyWaDkSkiPfakQ2X51FgZ+v/doi5Lu1TFdGwHUOPJkef67GfxyTvAFDedQ5AVCTc8DPNnM2O7djk8NE4AdrB8buQKBgQDHOcBuoN3IX6DnkR/QZpHv2ZO2q8/cSmoNedp3epqpz9qnzBJ26MbItjMSV7yZ556lUMmAPdV8DjodXH26jubbkUdnFTve1A1v6hocRNGNTwigK5jiBEtIJNr+hCHjTfrWl2DtXfU9NEXVGb3vFMNSfLBgZOentxxXVeuVkWJZFwKBgG32qFiod4wT+kQNMHAeYg/S/t8yAFX9rTzly1KV6HChbI+gsuZn1H8ui9c0LAO24YKJqBhlVgfFzYdj8pJIjeiAkdOgWSG7TvK7y042m4q0U1t/tciPGqWUZBYakOGU1BPiZSc2va/0W0F/ewMoFArPPIWT5huNWMNo3aLTVhI5AoGBAI4G5OG5OwL68ZnEQvrt9IIaCY1DpRa10i8zPITK2fHPZWEUQeGVhwlVoskj1SefEOFn247aBhS/i7yc0GEsOPY09sNNRvZPFBlBukWG5iEoQ8zz57TRPN38sEab6hDC6d0L5CS0Q/3TAymthVMo6SooDBFcPi25g7HbZeylzYgXAoGAavjEzy6a0Rj3ScNo5f698UMn0q4Mc8r7Kke6Eb9KQLaWMPJwAmxS82wjSgrPRpuRGIno4oOJALsFqKQ+MrGFhC9wNzAwIYo13nbhbBdFxRWQeipXYWZvM6nV+kH1eJ9PZTnEogqecuyobefeNv2SLzu9vhCwUYtuYyGttvdvDwM=
+  alipay_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvVNTFKdd2MlGTl22XRHEt5ZcrUlRWrcF6LWWlUpMGye+OeXQsq/suATi+IOIvf4V+WV4Zk5jtHBsOahdrDDihGh+1bNDM5+2x1613uiItcRPu9YK5BXhDtzAAlhnAuNaTzCCso1zXXpGv14rJxy/B1FSSesAtyAarC8izPCAonLyvKAx4aSyiZ9QydDHA04e4VQvl+vFwYqeTxHT//y2HTyxrVlA23ifbx8TDneA8KfvPgNj5d4W3ci84o7UeKBNRCPSarwuuI65cVEWMZ0Ww1lEEdO7XGDGUS2Zpqw0nTOZWmKoFcqgE9z3UcXPzjDV3KQr8U4Qd2kA6V/pphXA9wIDAQAB
+  notify_url: http://39.107.235.236/payinfo/notifyUrl
+  return_url: http://39.107.235.236/payinfo/returnUrl
+  sign_type: RSA2
+  charset: utf-8
+  gatewayUrl: https://openapi.alipaydev.com/gateway.do
+  log_path: D:\\alipay
+bdai:
+  appid:
+  appkey:
+  secretkey:
+qn:
+  oss:
+    accessKey:
+    secretKey:
+    bucket:
+
+ali:
+  oss:
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTAI5tBz68XJySzYvaAFpixh
+    accessKeySecret: q2EhTmGVb5Bj6HdjPWElzzIyLRzQmI
+    bucketName: kilogod
+    imagePathPrefix: mallshop/

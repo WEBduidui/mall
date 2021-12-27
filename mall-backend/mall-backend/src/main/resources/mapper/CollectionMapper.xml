@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kilogod.code.mapper.CollectionMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.kilogod.code.domain.Collection">
+                    <id column="id" property="id"/>
+                    <result column="user_id" property="userId"/>
+                    <result column="shop_id" property="shopId"/>
+                    <result column="shop_name" property="shopName"/>
+                    <result column="image_src" property="imageSrc"/>
+                    <result column="price" property="price"/>
+                    <result column="create_time" property="createTime"/>
+                    <result column="update_time" property="updateTime"/>
+                    <result column="ext1" property="ext1"/>
+                    <result column="ext2" property="ext2"/>
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, user_id, shop_id, shop_name, image_src, price, create_time, update_time, ext1, ext2
+        </sql>
+
+</mapper>
